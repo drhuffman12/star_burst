@@ -2,6 +2,11 @@
 
 Star Burst pattern generator
 
+The basic idea is to:
+* Pick the center points for multiple 'stars'.
+* For each 'star', draw multiple rings of radial lines around the star using various colors. (I use the same color for each 'level' of rings in sync with the other stars; but you could randomize it to not be in sync.)
+* For each ring of radial lines, don't draw a line if it would cross another star's current outer most ring.
+* For each ring of radial lines, don't draw a line if it is off the page.
 
 ## Usage
 
