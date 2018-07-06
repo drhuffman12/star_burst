@@ -1,24 +1,35 @@
 # star_burst
 
-TODO: Write a description here
+Star Burst pattern generator
+
+
+## Usage
 
 ### Examples
 
+```bash
+doc/examples/a/run.sh
+```
 ![doc/examples/a/_1_.gif](doc/examples/a/_1_.gif)
 
+```bash
+doc/examples/b/run.sh
+```
 ![doc/examples/b/_1_.gif](doc/examples/b/_1_.gif)
 
+```bash
+doc/examples/c/run.sh
+```
 ![doc/examples/c/_1_.gif](doc/examples/c/_1_.gif)
 
+```bash
+doc/examples/d/run.sh
+```
 ![doc/examples/d/_1_.gif](doc/examples/d/_1_.gif)
 
 ## Installation
 
 TODO: Write installation instructions here
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Development
 
