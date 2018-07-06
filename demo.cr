@@ -19,13 +19,15 @@ radius_delta = radius_delta < 1.0 ? 1.0 : radius_delta
 qty_skies = ARGV.size > 5 ? ARGV[5].to_i : 1
 qty_skies = qty_skies < 1 ? 1 : qty_skies
 
+file_path_base = ARGV.size > 6 ? ARGV[6] : "tmp/star_burst"
+
 puts "width: #{width}"
 puts "height: #{height}"
 puts "qty_stars: #{qty_stars}"
 puts "qty_ticks: #{qty_ticks}"
 puts "radius_delta: #{radius_delta}"
 puts "qty_skies: #{qty_skies}"
-puts "file_path_base: 'tmp/star_burst_N_'"
+puts "file_path_base: '#{file_path_base}_N_'"
 
 (1..qty_skies).each do |iqs|
   sky = StarBurst::Sky.new(
@@ -34,7 +36,7 @@ puts "file_path_base: 'tmp/star_burst_N_'"
     qty_stars: qty_stars,
     qty_ticks: qty_ticks,
     radius_delta: radius_delta,
-    file_path_base: "tmp/star_burst_#{iqs}_"
+    file_path_base: "#{file_path_base}_#{iqs}_"
   )
   sky.run
 end

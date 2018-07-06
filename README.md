@@ -2,6 +2,16 @@
 
 TODO: Write a description here
 
+### Examples
+
+![doc/examples/a/_1_.gif](doc/examples/a/_1_.gif)
+
+![doc/examples/b/_1_.gif](doc/examples/b/_1_.gif)
+
+![doc/examples/c/_1_.gif](doc/examples/c/_1_.gif)
+
+![doc/examples/d/_1_.gif](doc/examples/d/_1_.gif)
+
 ## Installation
 
 TODO: Write installation instructions here
