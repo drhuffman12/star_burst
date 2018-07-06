@@ -32,6 +32,11 @@ doc/examples/d/run.sh
 ```
 ![doc/examples/d/_1_.gif](doc/examples/d/_1_.gif)
 
+```bash
+doc/examples/e/run.sh
+```
+![doc/examples/e/_1_.gif](doc/examples/e/_1_.gif)
+
 ## Installation
 
 TODO: Write installation instructions here
