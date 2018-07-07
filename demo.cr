@@ -21,6 +21,8 @@ qty_skies = qty_skies < 1 ? 1 : qty_skies
 
 file_path_base = ARGV.size > 6 ? ARGV[6] : "tmp/star_burst"
 
+color_config_path = ARGV.size > 7 ? ARGV[7] : "tmp/color.config"
+
 puts "width: #{width}"
 puts "height: #{height}"
 puts "qty_stars: #{qty_stars}"
@@ -36,7 +38,8 @@ puts "file_path_base: '#{file_path_base}_N_'"
     qty_stars: qty_stars,
     qty_ticks: qty_ticks,
     radius_delta: radius_delta,
-    file_path_base: "#{file_path_base}_#{iqs}_"
+    file_path_base: "#{file_path_base}/sky_#{iqs}",
+    color_config_path: color_config_path
   )
   sky.run
 end

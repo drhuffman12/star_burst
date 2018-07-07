@@ -1,7 +1,7 @@
-require "stumpy_core"
-require "stumpy_png"
-require "stumpy_gif"
-require "stumpy_utils"
+# require "stumpy_core"
+# require "stumpy_png"
+# require "stumpy_gif"
+# require "stumpy_utils"
 
 module StarBurst
   class Star

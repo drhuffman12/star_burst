@@ -1,18 +1,18 @@
-require "stumpy_core"
-require "stumpy_png"
-require "stumpy_gif"
-require "stumpy_utils"
+# require "stumpy_core"
+# require "stumpy_png"
+# require "stumpy_gif"
+# require "stumpy_utils"
 
 module StarBurst
   class Wedge
-    include StumpyPNG
-    include StumpyGIF
+    # include StumpyPNG
+    # include StumpyGIF
 
     include StarBurst::Math
 
     getter logger : Logger
 
-    property canvas : Canvas
+    # property canvas : Canvas
 
     property ring : Ring
 
@@ -30,7 +30,7 @@ module StarBurst
 
     def initialize(
       @logger,
-      @canvas,
+      # @canvas,
       @ring,
       @angle_from = 0.0,
       @angle_to = 0.5 * ::Math::PI,

@@ -1,12 +1,12 @@
-require "stumpy_core"
-require "stumpy_png"
-require "stumpy_gif"
-require "stumpy_utils"
+# require "stumpy_core"
+# require "stumpy_png"
+# require "stumpy_gif"
+# require "stumpy_utils"
 
 module StarBurst
   class Ring
-    include StumpyPNG
-    include StumpyGIF
+    # include StumpyPNG
+    # include StumpyGIF
 
     getter logger : Logger
 
@@ -49,14 +49,17 @@ module StarBurst
       canvas.circle(x, y, radius_to, color, false)
       logger.debug("canvas.circle(#{x}, #{y}, #{radius_to}, #{color}, #{false})")
     end
-
     def draw_wedges(canvas)
-      wedge = StarBurst::Wedge.new(logger, canvas, self)
-      a_from = 0.0
-      a_to = 0.0
+      # wedge = StarBurst::Wedge.new(logger, canvas, self)
+      drew_any = false
+      wedge = StarBurst::Wedge.new(logger, self)
+      a_offset = rand # 0.0 # rand
+      a_last = 2 * ::Math::PI + a_offset
+      a_from = a_offset
+      a_to = a_offset
       (0..slices-1).step(2).each do|s|
         a_to = a_from + angle_delta
-        next if a_to > 2 * ::Math::PI
+        next if a_to > a_last
 
         wedge.move_to(
           angle_from: a_from, angle_to: a_to,
@@ -64,10 +67,31 @@ module StarBurst
           cr: cr, cg: cg, cb: cb,
           ca: s % 2 == 0 ? ca : ca / 2
         )
-        wedge.draw(canvas)
+        drew_any ||= wedge.draw(canvas)
 
         a_from = a_to + angle_delta
-      end  
+      end
+      drew_any
     end
+
+    # def draw_wedges(canvas)
+    #   wedge = StarBurst::Wedge.new(logger, self)
+    #   a_from = 0.0
+    #   a_to = 0.0
+    #   (0..slices-1).step(2).each do|s|
+    #     a_to = a_from + angle_delta
+    #     next if a_to > 2 * ::Math::PI
+
+    #     wedge.move_to(
+    #       angle_from: a_from, angle_to: a_to,
+    #       radius_from: radius_from, radius_to: radius_to,
+    #       cr: cr, cg: cg, cb: cb,
+    #       ca: s % 2 == 0 ? ca : ca / 2
+    #     )
+    #     wedge.draw(canvas)
+
+    #     a_from = a_to + angle_delta
+    #   end  
+    # end
   end
 end
