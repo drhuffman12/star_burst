@@ -98,6 +98,7 @@ module StarBurst
         @color_palette = color_config_str.lines.map { |line| line.split(",").map { |channel| channel.strip.to_u16 } }
 
         puts "color_palette: #{color_palette}"
+        puts
       end
     end
 
@@ -186,7 +187,8 @@ module StarBurst
       dir_path = File.expand_path(file_path_base + "/frames")
       file_path = dir_path + "/frame_" + @ticks.to_s
 
-      puts "dir_path: #{dir_path}, file_path: #{file_path}"
+      # puts "dir_path: #{dir_path}, file_path: #{file_path}"
+      print "."
 
       Dir.mkdir_p(dir_path) unless File.exists?(dir_path) && File.directory?(dir_path)
 
@@ -200,9 +202,12 @@ module StarBurst
       dir_path = File.expand_path(file_path_base)
       file_path = dir_path + "/frames.gif"
       
+      puts
+      puts "Saving anim to file_path: #{file_path}"
       Dir.mkdir_p(dir_path) unless File.exists?(dir_path) && File.directory?(dir_path)
 
       StumpyGIF.write(frames, file_path)
+      puts
     end
   end
 end
