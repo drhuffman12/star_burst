@@ -187,12 +187,10 @@ module StarBurst
       dir_path = File.expand_path(file_path_base + "/frames")
       file_path = dir_path + "/frame_" + @ticks.to_s
 
-      # puts "dir_path: #{dir_path}, file_path: #{file_path}"
       print "."
 
       Dir.mkdir_p(dir_path) unless File.exists?(dir_path) && File.directory?(dir_path)
 
-      # StumpyPNG.write(canvas, file_path + ".png")
       StumpyGIF.write([canvas], file_path + ".gif")
 
       {file_path: file_path, qty_stars: stars.size}
