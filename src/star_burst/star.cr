@@ -21,6 +21,8 @@ module StarBurst
     property cb : UInt16
     property ca : UInt16
 
+    property can_draw_another_ring
+
     def initialize(
       @logger,
       @sky,
@@ -33,10 +35,14 @@ module StarBurst
       @radius_max = 0.0
       @ring_index = 0
 
+      @can_draw_another_ring = true
+
       logger.debug("INIT: #{self}, star_index: #{star_index}, x: #{x}, y: #{y}")
     end
 
     def tick(canvas, cr, cg, cb, ca)
+      return false unless can_draw_another_ring
+
       logger.debug("TICK (#{self.class.name}): #{self}")
       
       @cr = cr
@@ -46,7 +52,8 @@ module StarBurst
 
       @radius_prev = @radius_max
       @radius_max += radius_delta
-      add_ring.tick(canvas)
+      # add_ring.tick(canvas)
+      @can_draw_another_ring = add_ring.tick(canvas)
     end
 
     def add_ring

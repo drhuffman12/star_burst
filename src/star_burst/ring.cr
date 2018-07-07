@@ -49,14 +49,16 @@ module StarBurst
       canvas.circle(x, y, radius_to, color, false)
       logger.debug("canvas.circle(#{x}, #{y}, #{radius_to}, #{color}, #{false})")
     end
+    
     def draw_wedges(canvas)
-      # wedge = StarBurst::Wedge.new(logger, canvas, self)
       drew_any = false
       wedge = StarBurst::Wedge.new(logger, self)
       a_offset = rand # 0.0 # rand
       a_last = 2 * ::Math::PI + a_offset
       a_from = a_offset
       a_to = a_offset
+      wedges_drawn = [] of Bool
+      
       (0..slices-1).step(2).each do|s|
         a_to = a_from + angle_delta
         next if a_to > a_last
@@ -67,31 +69,18 @@ module StarBurst
           cr: cr, cg: cg, cb: cb,
           ca: s % 2 == 0 ? ca : ca / 2
         )
-        drew_any ||= wedge.draw(canvas)
+        # drew_any ||= wedge.draw(canvas)
+        wedges_drawn << wedge.draw(canvas)
 
         a_from = a_to + angle_delta
       end
-      drew_any
+
+      # puts
+      # puts "draw_wedges() -> wedges_drawn: #{wedges_drawn}"
+      # puts "draw_wedges() -> wedges_drawn.any?: #{wedges_drawn.any?}"
+
+      # puts
+      wedges_drawn.any?
     end
-
-    # def draw_wedges(canvas)
-    #   wedge = StarBurst::Wedge.new(logger, self)
-    #   a_from = 0.0
-    #   a_to = 0.0
-    #   (0..slices-1).step(2).each do|s|
-    #     a_to = a_from + angle_delta
-    #     next if a_to > 2 * ::Math::PI
-
-    #     wedge.move_to(
-    #       angle_from: a_from, angle_to: a_to,
-    #       radius_from: radius_from, radius_to: radius_to,
-    #       cr: cr, cg: cg, cb: cb,
-    #       ca: s % 2 == 0 ? ca : ca / 2
-    #     )
-    #     wedge.draw(canvas)
-
-    #     a_from = a_to + angle_delta
-    #   end  
-    # end
   end
 end

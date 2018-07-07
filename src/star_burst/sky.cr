@@ -69,6 +69,7 @@ module StarBurst
 
     def run
       load_color_config
+
       canvas_blank = Canvas.new(width, height, RGBA::WHITE)
       @frames << canvas_blank
 
@@ -78,14 +79,17 @@ module StarBurst
 
       (1..qty_ticks).each do |t|
         logger.debug("TICK #: #{t}")
-        tick(canvas)
+        # tick(canvas)
+        any_star_can_draw_another_ring = tick(canvas)
+        
+        break unless any_star_can_draw_another_ring
         
         canvas2 = Canvas.new(width, height) { |x, y| canvas.get(x,y) }
         canvas = canvas2
         @ticks += 1
       end
 
-      save_frames
+      save_anim
     end
 
     def load_color_config
@@ -146,17 +150,36 @@ module StarBurst
     end
 
 
+    # def tick(canvas)
+    #   # cr = rand(UInt16::MAX).to_u16
+    #   # cg = rand(UInt16::MAX).to_u16
+    #   # cb = rand(UInt16::MAX).to_u16
+    #   # ca = (UInt16::MAX / 2).to_u16
+    #   cr, cg, cb, ca = rnd_color_set
+
+    #   stars.each { |star| star.tick(canvas, cr, cg, cb, ca) }
+
+    #   save_frame(canvas)
+    #   @frames << canvas
+    # end
     def tick(canvas)
       # cr = rand(UInt16::MAX).to_u16
       # cg = rand(UInt16::MAX).to_u16
       # cb = rand(UInt16::MAX).to_u16
       # ca = (UInt16::MAX / 2).to_u16
       cr, cg, cb, ca = rnd_color_set
+     
+      seed_star if rand < CHANCE_OF_NEW_STAR
 
-      stars.each { |star| star.tick(canvas, cr, cg, cb, ca) }
+      # stars.each { |star| star.tick(canvas, cr, cg, cb, ca) }
+      any_star_can_draw_another_ring = stars.map do |star|
+        star.tick(canvas, cr, cg, cb, ca)
+      end.any?
 
       save_frame(canvas)
       @frames << canvas
+
+      any_star_can_draw_another_ring
     end
 
     def save_frame(canvas)
@@ -173,8 +196,8 @@ module StarBurst
       {file_path: file_path, qty_stars: stars.size}
     end
 
-    def save_frames
-      dir_path = File.expand_path(file_path_base + "/frames")
+    def save_anim
+      dir_path = File.expand_path(file_path_base)
       file_path = dir_path + "/frames.gif"
       
       Dir.mkdir_p(dir_path) unless File.exists?(dir_path) && File.directory?(dir_path)

@@ -119,13 +119,15 @@ module StarBurst
     end
 
     def draw(canvas)
-      return if goes_offscreen(canvas) || overlaps_any_other_stars(canvas)
+      return false if goes_offscreen(canvas) || overlaps_any_other_stars(canvas)
 
       x = ring.star.x
       y = ring.star.y
       color = StumpyCore::RGBA.new(cr, cg, cb, ca)
       # canvas.fill_polygon(vertices, color)
       draw_side(canvas, 0, 1, color)
+
+      true
     end
 
     def draw_side(canvas, i_vertex_from, i_vertex_to, color)
