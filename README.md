@@ -15,27 +15,27 @@ The basic idea is to:
 ```bash
 doc/examples/a/run.sh
 ```
-![doc/examples/a/_1_.gif](doc/examples/a/_1_.gif)
+![doc/examples/a/sky_1/frames.gif](doc/examples/a/sky_1/frames.gif)
 
 ```bash
 doc/examples/b/run.sh
 ```
-![doc/examples/b/_1_.gif](doc/examples/b/_1_.gif)
+![doc/examples/b/sky_1/frames.gif](doc/examples/b/sky_1/frames.gif)
 
 ```bash
 doc/examples/c/run.sh
 ```
-![doc/examples/c/_1_.gif](doc/examples/c/_1_.gif)
+![doc/examples/c/sky_1/frames.gif](doc/examples/c/sky_1/frames.gif)
 
 ```bash
 doc/examples/d/run.sh
 ```
-![doc/examples/d/_1_.gif](doc/examples/d/_1_.gif)
+![doc/examples/d/sky_1/frames.gif](doc/examples/d/sky_1/frames.gif)
 
 ```bash
 doc/examples/e/run.sh
 ```
-![doc/examples/e/_1_.gif](doc/examples/e/_1_.gif)
+![doc/examples/e/sky_1/frames.gif](doc/examples/e/sky_1/frames.gif)
 
 ## Installation
 

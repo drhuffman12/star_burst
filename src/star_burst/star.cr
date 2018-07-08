@@ -1,8 +1,3 @@
-# require "stumpy_core"
-# require "stumpy_png"
-# require "stumpy_gif"
-# require "stumpy_utils"
-
 module StarBurst
   class Star
     getter logger : Logger
@@ -52,7 +47,6 @@ module StarBurst
 
       @radius_prev = @radius_max
       @radius_max += radius_delta
-      # add_ring.tick(canvas)
       @can_draw_another_ring = add_ring.tick(canvas)
     end
 

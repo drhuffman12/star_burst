@@ -1,13 +1,5 @@
-# require "stumpy_core"
-# require "stumpy_png"
-# require "stumpy_gif"
-# require "stumpy_utils"
-
 module StarBurst
   class Ring
-    # include StumpyPNG
-    # include StumpyGIF
-
     getter logger : Logger
 
     property star : Star
@@ -53,7 +45,7 @@ module StarBurst
     def draw_wedges(canvas)
       drew_any = false
       wedge = StarBurst::Wedge.new(logger, self)
-      a_offset = rand # 0.0 # rand
+      a_offset = rand
       a_last = 2 * ::Math::PI + a_offset
       a_from = a_offset
       a_to = a_offset
@@ -69,17 +61,11 @@ module StarBurst
           cr: cr, cg: cg, cb: cb,
           ca: s % 2 == 0 ? ca : ca / 2
         )
-        # drew_any ||= wedge.draw(canvas)
         wedges_drawn << wedge.draw(canvas)
 
         a_from = a_to + angle_delta
       end
 
-      # puts
-      # puts "draw_wedges() -> wedges_drawn: #{wedges_drawn}"
-      # puts "draw_wedges() -> wedges_drawn.any?: #{wedges_drawn.any?}"
-
-      # puts
       wedges_drawn.any?
     end
   end

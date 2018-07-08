@@ -21,7 +21,7 @@ qty_skies = qty_skies < 1 ? 1 : qty_skies
 
 file_path_base = ARGV.size > 6 ? ARGV[6] : "tmp/star_burst"
 
-color_config_path = ARGV.size > 7 ? ARGV[7] : "tmp/color.config"
+color_config_path = ARGV.size > 7 ? ARGV[7] : "example/color.config"
 
 puts "width: #{width}"
 puts "height: #{height}"

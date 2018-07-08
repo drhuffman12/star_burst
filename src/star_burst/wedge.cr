@@ -1,22 +1,12 @@
-# require "stumpy_core"
-# require "stumpy_png"
-# require "stumpy_gif"
-# require "stumpy_utils"
-
 module StarBurst
   class Wedge
-    # include StumpyPNG
-    # include StumpyGIF
-
     include StarBurst::Math
 
     getter logger : Logger
 
-    # property canvas : Canvas
-
     property ring : Ring
 
-    property vertices : Array(StumpyCore::Point) # = [] of StumpyCore::Point
+    property vertices : Array(StumpyCore::Point)
 
     property angle_from : Float64
     property angle_to : Float64
@@ -30,7 +20,6 @@ module StarBurst
 
     def initialize(
       @logger,
-      # @canvas,
       @ring,
       @angle_from = 0.0,
       @angle_to = 0.5 * ::Math::PI,
@@ -89,8 +78,6 @@ module StarBurst
       other_star_radius = other_star.radius_max
       overlaps = dist < other_star_radius
 
-      # debug_overlap(canvas, other_star, vertex, dist, vx, vy, sx, sy, other_star_radius) if overlaps
-
       overlaps
     end
 
@@ -124,7 +111,6 @@ module StarBurst
       x = ring.star.x
       y = ring.star.y
       color = StumpyCore::RGBA.new(cr, cg, cb, ca)
-      # canvas.fill_polygon(vertices, color)
       draw_side(canvas, 0, 1, color)
 
       true

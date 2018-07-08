@@ -1,13 +1,12 @@
 require "logger"
 require "stumpy_core"
-# require "stumpy_png"
 require "stumpy_gif"
 require "stumpy_utils"
 
 module StarBurst
   class Sky
     CHANCE_OF_NEW_STAR = 0.5
-    # include StumpyPNG
+    
     include StumpyGIF
 
     property frames = [] of Canvas
@@ -45,14 +44,6 @@ module StarBurst
     def seed_initial_stars(qty : Int32)
       (1..qty).each do |q|
         seed_star
-        # @stars << Star.new(
-        #   logger,
-        #   star_index: q,
-        #   sky: self,
-        #   radius_delta: radius_delta,
-        #   x: rand(width),
-        #   y: rand(height)
-        # )
       end
     end
 
@@ -79,7 +70,7 @@ module StarBurst
 
       (1..qty_ticks).each do |t|
         logger.debug("TICK #: #{t}")
-        # tick(canvas)
+
         any_star_can_draw_another_ring = tick(canvas)
         
         break unless any_star_can_draw_another_ring
@@ -93,13 +84,14 @@ module StarBurst
     end
 
     def load_color_config
-      if color_config_path > "" && File.file?(color_config_path) && File.size(color_config_path) > 0
+      if color_config_path > "" && File.exists?(color_config_path) && File.file?(color_config_path) && File.size(color_config_path) > 0
         color_config_str = File.read(color_config_path)
         @color_palette = color_config_str.lines.map { |line| line.split(",").map { |channel| channel.strip.to_u16 } }
-
-        puts "color_palette: #{color_palette}"
-        puts
+      else
+        @color_palette = rnd_color_config
       end
+      puts "color_palette: #{color_palette}"
+      puts
     end
 
     def save_color_config
@@ -109,7 +101,6 @@ module StarBurst
     end
 
     def save_color_config_from_percents
-      # color_config_path = "tmp/color.config"
       if color_config_path > ""
         color_percents = [
           [1, 0, 0, 1],
@@ -135,6 +126,16 @@ module StarBurst
         File.write(color_config_path, color_config_str)
       end
     end
+    
+    def rnd_color_config
+      (1..8).map {
+        cr = rand(UInt16::MAX).to_u16
+        cg = rand(UInt16::MAX).to_u16
+        cb = rand(UInt16::MAX).to_u16
+        ca = (UInt16::MAX / 2).to_u16
+        [cr, cg, cb, ca]
+      }
+    end
 
     def rnd_color_set
       if color_config_path > ""
@@ -150,29 +151,11 @@ module StarBurst
       end
     end
 
-
-    # def tick(canvas)
-    #   # cr = rand(UInt16::MAX).to_u16
-    #   # cg = rand(UInt16::MAX).to_u16
-    #   # cb = rand(UInt16::MAX).to_u16
-    #   # ca = (UInt16::MAX / 2).to_u16
-    #   cr, cg, cb, ca = rnd_color_set
-
-    #   stars.each { |star| star.tick(canvas, cr, cg, cb, ca) }
-
-    #   save_frame(canvas)
-    #   @frames << canvas
-    # end
     def tick(canvas)
-      # cr = rand(UInt16::MAX).to_u16
-      # cg = rand(UInt16::MAX).to_u16
-      # cb = rand(UInt16::MAX).to_u16
-      # ca = (UInt16::MAX / 2).to_u16
       cr, cg, cb, ca = rnd_color_set
      
       seed_star if rand < CHANCE_OF_NEW_STAR
 
-      # stars.each { |star| star.tick(canvas, cr, cg, cb, ca) }
       any_star_can_draw_another_ring = stars.map do |star|
         star.tick(canvas, cr, cg, cb, ca)
       end.any?
