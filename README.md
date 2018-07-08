@@ -8,6 +8,23 @@ The 'rules' for this pattern are basically:
 * For each ring of radial lines, don't draw a line if it would cross another star's current outer most ring.
 * For each ring of radial lines, don't draw a line if it is off the page.
 
+## Installation
+
+* Clone this repo.
+
+```bash
+cd some/path
+git clone https://github.com/drhuffman12/star_burst
+```
+
+* Build an run (see examples under "doc/examples").
+
+```
+shards install
+crystal build --release doc/examples/demo.cr
+doc/examples/demo 100 100 8 12 4.0 1 doc/examples/a/
+```
+
 ## Usage
 
 ### Examples
@@ -38,18 +55,9 @@ doc/examples/d/run.sh
 doc/examples/e/run.sh
 ```
 ![doc/examples/e/sky_1/frames.gif](doc/examples/e/sky_1/frames.gif)
-
-## Installation
-
-TODO: Write installation instructions here
-
-## Development
-
-TODO: Write development instructions here
-
 ## Contributing
 
-1. Fork it (<https://github.com/your-github-user/star_burst/fork>)
+1. Fork it (<https://github.com/drhuffman12/star_burst/fork>)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
@@ -57,4 +65,4 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [your-github-user](https://github.com/your-github-user) Daniel Huffman - creator, maintainer
+- [drhuffman12](https://github.com/drhuffman12) Daniel Huffman - creator, maintainer
