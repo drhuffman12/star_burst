@@ -2,8 +2,8 @@
 
 Star Burst pattern generator
 
-The basic idea is to:
-* Pick the center points for multiple 'stars'.
+The 'rules' for this pattern are basically:
+* Pick the center points for multiple 'stars' (at least one to start; randomly add others as time goes on).
 * For each 'star', draw multiple rings of radial lines around the star using various colors. (I use the same color for each 'level' of rings in sync with the other stars; but you could randomize it to not be in sync.)
 * For each ring of radial lines, don't draw a line if it would cross another star's current outer most ring.
 * For each ring of radial lines, don't draw a line if it is off the page.
@@ -11,6 +11,8 @@ The basic idea is to:
 ## Usage
 
 ### Examples
+
+Below are some example sky 'seed' scripts, along with an example run's animated image.
 
 ```bash
 doc/examples/a/run.sh
